@@ -27,10 +27,6 @@ function buildTweetURL(title, url) {
 }
 
 (function() {
-  var xhr = new XMLHttpRequest();
-  xhr.open('GET', 'http://www.google.co.jp', true);
-  xhr.send();
-
   chrome.contextMenus.create({
     "type": "normal",
     "title": "twify",
