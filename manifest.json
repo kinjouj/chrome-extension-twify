@@ -4,7 +4,8 @@
   "manifest_version": 2,
   "description": "URL tweet Context Menu Chrome Extension",
   "background": {
-    "scripts": ["twify.js"]
+    "scripts": ["twify.js"],
+    "persistent": false
   },
   "permissions": ["contextMenus", "http://*/", "https://*/"]
 }

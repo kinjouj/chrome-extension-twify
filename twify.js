@@ -28,18 +28,20 @@ function buildTweetURL(title, url) {
 
 (function() {
   chrome.contextMenus.create({
+    "id": "twiffy_ctxmenu",
     "type": "normal",
     "title": "twify",
-    "onclick": function(info, tab) {
-      var title = getTitle(tab);
-      var url = getURL(tab);
+    "contexts": ["page"]
+  });
+  chrome.contextMenus.onClicked.addListener(function(info, tab) {
+    var title = getTitle(tab);
+    var url = getURL(tab);
 
-      if (title !== undefined && url !== undefined && /^http/.test(url)) {
-        var openURL = buildTweetURL(title, url);
+    if (title !== undefined && url !== undefined && /^http/.test(url)) {
+      var openURL = buildTweetURL(title, url);
 
-        if (openURL !== undefined) {
-          chrome.tabs.create({ "url": openURL });
-        }
+      if (openURL !== undefined) {
+        chrome.tabs.create({ "url": openURL });
       }
     }
   });
