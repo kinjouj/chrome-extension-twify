@@ -15,7 +15,7 @@ function getURL(tab) {
     }
   }
 
-  return undefined;
+  return null;
 }
 
 function buildTweetURL(title, url) {
@@ -31,13 +31,20 @@ function buildTweetURL(title, url) {
     "id": "twiffy_ctxmenu",
     "type": "normal",
     "title": "twify",
-    "contexts": ["page"]
+    "contexts": ["page", "selection"]
   });
   chrome.contextMenus.onClicked.addListener(function(info, tab) {
-    var title = getTitle(tab);
+    var title = null;
+
+    if ("selectionText" in info) {
+      title = info.selectionText;
+    } else {
+      title = getTitle(tab);
+    }
+
     var url = getURL(tab);
 
-    if (title !== undefined && url !== undefined && /^http/.test(url)) {
+    if (title !== null && url !== undefined && /^http/.test(url)) {
       var openURL = buildTweetURL(title, url);
 
       if (openURL !== undefined) {
