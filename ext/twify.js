@@ -27,29 +27,44 @@ function buildTweetURL(title, url) {
 }
 
 (function() {
+
   chrome.contextMenus.create({
-    "id": "twiffy_ctxmenu",
+    "id": "twify_ctxmenu_tweet",
     "type": "normal",
     "title": "twify",
     "contexts": ["page", "selection"]
   });
+
+  chrome.contextMenus.create({
+    "id": "twify_ctxmenu_search",
+    "type": "normal",
+    "title": "TwitterでこのURLを検索",
+    "contexts": ["page"]
+  });
+
   chrome.contextMenus.onClicked.addListener(function(info, tab) {
-    var title = null;
 
-    if ("selectionText" in info) {
-      title = info.selectionText;
-    } else {
-      title = getTitle(tab);
-    }
+    if (info.menuItemId === "twify_ctxmenu_tweet") {
+      var title = null;
 
-    var url = getURL(tab);
-
-    if (title !== null && url !== undefined && /^http/.test(url)) {
-      var openURL = buildTweetURL(title, url);
-
-      if (openURL !== undefined) {
-        chrome.tabs.create({ "url": openURL });
+      if ("selectionText" in info) {
+        title = info.selectionText;
+      } else {
+        title = getTitle(tab);
       }
+
+      var url = getURL(tab);
+
+      if (title !== null && url !== undefined && /^http/.test(url)) {
+        var openURL = buildTweetURL(title, url);
+
+        if (openURL !== undefined) {
+          chrome.tabs.create({ "url": openURL });
+        }
+      }
+    } else if (info.menuItemId === "twify_ctxmenu_search") {
+      var url = getURL(tab);
+      chrome.tabs.create({ "url": "https://twitter.com/search?q=" + url });
     }
   });
 })();
