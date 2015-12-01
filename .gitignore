@@ -1,3 +1,4 @@
 *.lock
 *.pem
 *.crx
+node_modules
