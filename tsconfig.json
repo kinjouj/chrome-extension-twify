@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "target": "es2024",
+    "module": "ESNext",
+    "strict": true,
+    "types": ["chrome"]
+  },
+  "include": ["src/**/*.ts"]
+}

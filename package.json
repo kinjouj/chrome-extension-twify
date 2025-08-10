@@ -1,19 +1,10 @@
 {
-  "name": "chrome-extension-twify",
-  "version": "1.0.0",
-  "description": "コンテクストメニューで見ているページをTwitterに投稿するフォームを出すだけのChrome拡張",
   "scripts": {
-    "build": "browserify -d src/twify.js -o dist/background.js",
-    "build:watch": "watchify src/twify.js -o dist/background.js -v"
+    "build": "vite build"
   },
   "devDependencies": {
-    "babel-preset-es2015": "^6.1.18",
-    "babelify": "^7.2.0",
-    "watchify": "^3.6.1"
-  },
-  "browserify": {
-    "transform": [
-      "babelify"
-    ]
+    "@types/chrome": "^0.1.3",
+    "typescript": "^5.9.2",
+    "vite": "^7.1.1"
   }
 }

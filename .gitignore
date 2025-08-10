@@ -1,4 +1,2 @@
-*.lock
-*.pem
-*.crx
+build/background.js
 node_modules
