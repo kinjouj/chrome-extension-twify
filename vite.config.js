@@ -4,11 +4,13 @@ import { defineConfig } from 'vite'
 export default defineConfig((opt) => {
   return {
     root: 'src',
+    publicDir: "../public",
     build: {
       outDir: '../build',
+      emptyOutDir: true,
       rollupOptions: {
         input: {
-          index: resolve(__dirname, 'src/app.ts'),
+          background: resolve(__dirname, 'src/app.ts'),
         },
         output: {
           entryFileNames: 'background.js',

@@ -1,28 +1,29 @@
 export default class Twify {
+  private selectionText: string | undefined;
+  private title: string | undefined;
+  private url: string;
 
-  public url: string;
-  public title: string;
-  public isSelectionMode: boolean;
-
-  constructor(info: chrome.contextMenus.OnClickData, tab?: chrome.tabs.Tab) {
-    this.url = tab?.url as string;
-    this.isSelectionMode = 'selectionText' in info;
-
-    if (this.isSelectionMode) {
-      this.title = info.selectionText as string;
-    } else {
-      this.title = tab?.title as string;
-    }
+  constructor(info: chrome.contextMenus.OnClickData, tab: chrome.tabs.Tab) {
+    this.selectionText = info.selectionText;
+    this.title = 'linkUrl' in info ? undefined : this.selectionText ?? tab.title;
+    this.url = (info.linkUrl ?? tab.url) as string;
   }
 
   public post(): void {
-    const title = encodeURIComponent(this.title);
-    const url   = encodeURIComponent(this.url);
-    chrome.tabs.create({ url: `https://x.com/intent/tweet?source=webclient&text=${title}%20${url}` });
+    const arr: string[] = [];
+
+    if (this.title != null) {
+      arr.push(encodeURIComponent(this.title));
+      arr.push('%20');
+    }
+
+    arr.push(encodeURIComponent(this.url));
+    const text = arr.join('');
+    chrome.tabs.create({ url: `https://x.com/intent/tweet?source=webclient&text=${text}` });
   }
 
   public search(): void {
-    const text = this.isSelectionMode ? this.title : this.url;
+    const text = this.selectionText ?? this.url;
     chrome.tabs.create({ url: `https://x.com/search?q=${text}` });
   }
 }
