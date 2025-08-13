@@ -2,7 +2,7 @@
   "name": "chrome-extension-twify",
   "version": "0.0.1",
   "scripts": {
-    "build": "tslint --project . && vite build"
+    "build": "mkdir -p build && tslint --project . && vite build"
   },
   "devDependencies": {
     "@types/chrome": "^0.1.3",
