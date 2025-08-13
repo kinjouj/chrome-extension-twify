@@ -8,6 +8,7 @@ export default defineConfig((opt) => {
     build: {
       outDir: '../build',
       emptyOutDir: true,
+      copyPublicDir: true,
       rollupOptions: {
         input: {
           background: resolve(__dirname, 'src/app.ts'),
