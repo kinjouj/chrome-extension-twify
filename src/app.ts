@@ -1,6 +1,6 @@
 import Twify from './twify';
 
-const TWIFY_ACTION_TWEET_ID  = 'twify_ctxmenu_tweet';
+const TWIFY_ACTION_TWEET_ID = 'twify_ctxmenu_tweet';
 const TWIFY_ACTION_TWEET_TITLE = 'Xでポスト';
 const TWIFY_ACTION_SEARCH_ID = 'twify_ctx_menu_search';
 const TWIFY_ACTION_SEARCH_TITLE = 'Xで検索';
