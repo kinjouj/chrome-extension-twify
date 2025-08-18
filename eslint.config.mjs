@@ -19,7 +19,10 @@ export default defineConfig([
     },
     rules: {
       '@stylistic/quotes': ['error', 'single'],
-      '@stylistic/semi': ['error', 'always']
+      '@stylistic/semi': ['error', 'always'],
+      '@typescript-eslint/consistent-type-imports': 'error',
+      '@typescript-eslint/explicit-function-return-type': 'error',
+      '@typescript-eslint/no-non-null-assertion': 'error'
     }
   },
   {

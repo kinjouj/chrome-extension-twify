@@ -12,7 +12,7 @@ chrome.contextMenus.create({
 });
 
 chrome.contextMenus.create({
-  contexts: [chrome.contextMenus.ContextType.PAGE, chrome.contextMenus.ContextType.SELECTION],
+  contexts: [chrome.contextMenus.ContextType.PAGE, chrome.contextMenus.ContextType.LINK, chrome.contextMenus.ContextType.SELECTION],
   id: TWIFY_ACTION_SEARCH_ID,
   title: TWIFY_ACTION_SEARCH_TITLE,
 });
