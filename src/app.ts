@@ -5,16 +5,25 @@ const TWIFY_ACTION_TWEET_TITLE = 'Xでポスト';
 const TWIFY_ACTION_SEARCH_ID = 'twify_ctx_menu_search';
 const TWIFY_ACTION_SEARCH_TITLE = 'Xで検索';
 
-chrome.contextMenus.create({
-  contexts: [chrome.contextMenus.ContextType.PAGE, chrome.contextMenus.ContextType.LINK],
-  id: TWIFY_ACTION_TWEET_ID,
-  title: TWIFY_ACTION_TWEET_TITLE,
-});
+chrome.runtime.onInstalled.addListener(() => {
+  chrome.contextMenus.create({
+    contexts: [
+      chrome.contextMenus.ContextType.PAGE,
+      chrome.contextMenus.ContextType.LINK,
+    ],
+    id: TWIFY_ACTION_TWEET_ID,
+    title: TWIFY_ACTION_TWEET_TITLE,
+  });
 
-chrome.contextMenus.create({
-  contexts: [chrome.contextMenus.ContextType.PAGE, chrome.contextMenus.ContextType.LINK, chrome.contextMenus.ContextType.SELECTION],
-  id: TWIFY_ACTION_SEARCH_ID,
-  title: TWIFY_ACTION_SEARCH_TITLE,
+  chrome.contextMenus.create({
+    contexts: [
+      chrome.contextMenus.ContextType.PAGE,
+      chrome.contextMenus.ContextType.LINK,
+      chrome.contextMenus.ContextType.SELECTION,
+    ],
+    id: TWIFY_ACTION_SEARCH_ID,
+    title: TWIFY_ACTION_SEARCH_TITLE,
+  });
 });
 
 chrome.contextMenus.onClicked.addListener((info: chrome.contextMenus.OnClickData, tab?: chrome.tabs.Tab) => {
