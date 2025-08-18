@@ -6,12 +6,17 @@ import { defineConfig } from 'eslint/config';
 
 export default defineConfig([
   stylistic.configs.recommended,
+  tseslint.configs.recommended,
   {
     files: ['**/*.{ts,tsx}'],
-    ignores: [],
     plugins: { js, '@stylistic': stylistic },
     extends: ['js/recommended'],
-    languageOptions: { globals: globals.browser },
+    languageOptions: {
+      globals: {
+        ...globals.browser,
+        ...globals.webextensions
+      }
+    },
     rules: {
       '@stylistic/quotes': ['error', 'single'],
       '@stylistic/semi': ['error', 'always']
@@ -19,6 +24,5 @@ export default defineConfig([
   },
   {
     ignores: ['**/*.js', '**/*.mjs']
-  },
-  tseslint.configs.recommended
+  }
 ]);
