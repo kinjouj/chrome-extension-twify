@@ -27,7 +27,7 @@ chrome.runtime.onInstalled.addListener(() => {
 });
 
 chrome.contextMenus.onClicked.addListener((info: chrome.contextMenus.OnClickData, tab?: chrome.tabs.Tab) => {
-  if (tab === null) {
+  if (tab == null) {
     return;
   }
 

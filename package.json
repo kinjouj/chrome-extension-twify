@@ -2,7 +2,7 @@
   "name": "chrome-extension-twify",
   "version": "0.0.1",
   "scripts": {
-    "build": "npx eslint && vite build"
+    "build": "npx eslint && tsc --noEmit && vite build"
   },
   "devDependencies": {
     "@stylistic/eslint-plugin": "^5.2.3",

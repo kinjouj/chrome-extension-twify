@@ -5,7 +5,7 @@ const noop = (): void => {
 export default class Twify {
   private selectionText: string | undefined;
   private title: string | undefined;
-  private url: string;
+  private url: string | undefined;
 
   constructor(info: chrome.contextMenus.OnClickData, tab: chrome.tabs.Tab) {
     this.selectionText = info.selectionText;
@@ -14,6 +14,10 @@ export default class Twify {
   }
 
   public post(): void {
+    if (this.url == null) {
+      return;
+    }
+
     const arr: string[] = [];
 
     if (this.title != null) {
