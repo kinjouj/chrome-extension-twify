@@ -27,7 +27,11 @@ chrome.runtime.onInstalled.addListener(() => {
 });
 
 chrome.contextMenus.onClicked.addListener((info: chrome.contextMenus.OnClickData, tab?: chrome.tabs.Tab) => {
-  const twify: Twify = new Twify(info, tab as chrome.tabs.Tab);
+  if (tab === null) {
+    return;
+  }
+
+  const twify: Twify = new Twify(info, tab);
 
   switch (info.menuItemId) {
     case TWIFY_ACTION_TWEET_ID: {

@@ -1,3 +1,7 @@
+const noop = (): void => {
+  // noop
+};
+
 export default class Twify {
   private selectionText: string | undefined;
   private title: string | undefined;
@@ -6,7 +10,7 @@ export default class Twify {
   constructor(info: chrome.contextMenus.OnClickData, tab: chrome.tabs.Tab) {
     this.selectionText = info.selectionText;
     this.title = 'linkUrl' in info ? undefined : this.selectionText ?? tab.title;
-    this.url = (info.linkUrl ?? tab.url) as string;
+    this.url = info.linkUrl ?? tab.url;
   }
 
   public post(): void {
@@ -19,11 +23,11 @@ export default class Twify {
 
     arr.push(encodeURIComponent(this.url));
     const text = arr.join('');
-    chrome.tabs.create({ url: `https://x.com/intent/tweet?source=webclient&text=${text}` });
+    chrome.tabs.create({ url: `https://x.com/intent/tweet?source=webclient&text=${text}` }, noop);
   }
 
   public search(): void {
     const text = this.selectionText ?? this.url;
-    chrome.tabs.create({ url: `https://x.com/search?q=${text}` });
+    chrome.tabs.create({ url: `https://x.com/search?q=${text}` }, noop);
   }
 }
