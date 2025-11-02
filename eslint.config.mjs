@@ -6,30 +6,52 @@ import tseslint from 'typescript-eslint';
 export default tseslint.config(
   {
     files: ['**/*.{ts,tsx}'],
+    plugins: {
+      '@stylistic': stylistic
+    },
     extends: [
-      eslint.configs.recommended,
       tseslint.configs.recommendedTypeChecked,
-      tseslint.configs.stylisticTypeChecked,
+      stylistic.configs.recommended,
+      tseslint.configs.stylisticTypeChecked
     ],
-    plugins: { '@stylistic': stylistic },
     languageOptions: {
       parserOptions: {
         projectService: true,
-        tsconfigRootDir: import.meta.dirname,
+        tsconfigRootDir: import.meta.dirname
       },
       globals: {
         ...globals.browser,
-        ...globals.webextensions
       }
     },
     rules: {
-      ...stylistic.configs.recommended.rules,
-      ...tseslint.configs.recommended.rules,
+      'curly': ['error', 'all'],
+      'no-empty': ['error', { allowEmptyCatch: true }],
+      'no-constant-condition': 'error',
+      '@stylistic/comma-dangle': [
+        'error',
+        {
+          'arrays': 'always-multiline',
+          'objects': 'always-multiline',
+          'functions': 'ignore'
+        }
+      ],
       '@stylistic/semi': ['error', 'always'],
+      '@stylistic/brace-style': ['error', '1tbs', { allowSingleLine: true }],
+      '@stylistic/max-statements-per-line': ['error', { max: 2 }],
       '@typescript-eslint/array-type': 'error',
+      '@typescript-eslint/consistent-type-definitions': 'off',
       '@typescript-eslint/consistent-type-imports': 'error',
       '@typescript-eslint/explicit-function-return-type': 'error',
       '@typescript-eslint/no-non-null-assertion': 'error',
+      '@typescript-eslint/no-unused-vars': [
+        'warn',
+        {
+          'argsIgnorePattern': '^_',
+          'varsIgnorePattern': '^_',
+          'caughtErrorsIgnorePattern': '^_',
+          'destructuredArrayIgnorePattern': '^_'
+        }
+      ]
     }
   },
   {
