@@ -1,13 +1,13 @@
-import eslint from '@eslint/js';
-import globals from 'globals';
-import stylistic from '@stylistic/eslint-plugin';
-import tseslint from 'typescript-eslint';
+import eslint from "@eslint/js";
+import globals from "globals";
+import stylistic from "@stylistic/eslint-plugin";
+import tseslint from "typescript-eslint";
 
 export default tseslint.config(
   {
-    files: ['**/*.{ts,tsx}'],
+    files: ["**/*.{ts,tsx}"],
     plugins: {
-      '@stylistic': stylistic
+      "@stylistic": stylistic
     },
     extends: [
       tseslint.configs.recommendedTypeChecked,
@@ -24,37 +24,39 @@ export default tseslint.config(
       }
     },
     rules: {
-      'curly': ['error', 'all'],
-      'no-empty': ['error', { allowEmptyCatch: true }],
-      'no-constant-condition': 'error',
-      '@stylistic/comma-dangle': [
-        'error',
+      "curly": ["error", "all"],
+      "no-empty": ["error", { allowEmptyCatch: true }],
+      "no-constant-condition": "error",
+      "@stylistic/arrow-parens": ["error", "always"],
+      "@stylistic/array-bracket-spacing": ["error", "always", { singleValue: false}],
+      "@stylistic/comma-dangle": [
+        "error",
         {
-          'arrays': 'always-multiline',
-          'objects': 'always-multiline',
-          'functions': 'ignore'
+          "arrays": "always-multiline",
+          "objects": "always-multiline",
+          "functions": "ignore"
         }
       ],
-      '@stylistic/semi': ['error', 'always'],
-      '@stylistic/brace-style': ['error', '1tbs', { allowSingleLine: true }],
-      '@stylistic/max-statements-per-line': ['error', { max: 2 }],
-      '@typescript-eslint/array-type': 'error',
-      '@typescript-eslint/consistent-type-definitions': 'off',
-      '@typescript-eslint/consistent-type-imports': 'error',
-      '@typescript-eslint/explicit-function-return-type': 'error',
-      '@typescript-eslint/no-non-null-assertion': 'error',
-      '@typescript-eslint/no-unused-vars': [
-        'warn',
+      "@stylistic/semi": ["error", "always"],
+      "@stylistic/brace-style": ["error", "1tbs", { allowSingleLine: true }],
+      "@stylistic/max-statements-per-line": ["error", { max: 2 }],
+      "@typescript-eslint/array-type": "error",
+      "@typescript-eslint/consistent-type-definitions": "off",
+      "@typescript-eslint/consistent-type-imports": "error",
+      "@typescript-eslint/explicit-function-return-type": "error",
+      "@typescript-eslint/no-non-null-assertion": "error",
+      "@typescript-eslint/no-unused-vars": [
+        "warn",
         {
-          'argsIgnorePattern': '^_',
-          'varsIgnorePattern': '^_',
-          'caughtErrorsIgnorePattern': '^_',
-          'destructuredArrayIgnorePattern': '^_'
+          "argsIgnorePattern": "^_",
+          "varsIgnorePattern": "^_",
+          "caughtErrorsIgnorePattern": "^_",
+          "destructuredArrayIgnorePattern": "^_"
         }
       ]
     }
   },
   {
-    ignores: ['**/*.js', '**/*.mjs']
+    ignores: ["**/*.js", "**/*.mjs"]
   }
 );
