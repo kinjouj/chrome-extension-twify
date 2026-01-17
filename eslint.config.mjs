@@ -27,8 +27,10 @@ export default tseslint.config(
       "curly": ["error", "all"],
       "no-empty": ["error", { allowEmptyCatch: true }],
       "no-constant-condition": "error",
+      "no-restricted-imports": ["error", { "paths": ["./"] }],
       "@stylistic/arrow-parens": ["error", "always"],
-      "@stylistic/array-bracket-spacing": ["error", "always", { singleValue: false}],
+      "@stylistic/array-bracket-spacing": ["error", "never"],
+      "@stylistic/brace-style": ["error", "1tbs", { allowSingleLine: true }],
       "@stylistic/comma-dangle": [
         "error",
         {
@@ -38,7 +40,6 @@ export default tseslint.config(
         }
       ],
       "@stylistic/semi": ["error", "always"],
-      "@stylistic/brace-style": ["error", "1tbs", { allowSingleLine: true }],
       "@stylistic/max-statements-per-line": ["error", { max: 2 }],
       "@typescript-eslint/array-type": "error",
       "@typescript-eslint/consistent-type-definitions": "off",
